@@ -33,7 +33,7 @@ TARGET_TEGRA_VERSION := t114
 # Kernel
 BOARD_KERNEL_CMDLINE := androidboot.hardware=mojo androidboot.selinux=permissive
 TARGET_KERNEL_SOURCE := kernel/madcatz/mojo
-TARGET_KERNEL_CONFIG := cyanogenmod_mojo_defconfig
+TARGET_KERNEL_CONFIG := lineageos_mojo_defconfig
 
 # Audio
 BOARD_USES_ALSA_AUDIO := true
