@@ -15,8 +15,12 @@
 #
 
 # Device uses high-density artwork where available
-PRODUCT_AAPT_CONFIG := normal
-PRODUCT_AAPT_PREF_CONFIG := tvdpi
+PRODUCT_AAPT_CONFIG := normal large xlarge hdpi xhdpi
+PRODUCT_AAPT_PREF_CONFIG := xhdpi
+
+# Boot animation
+TARGET_SCREEN_HEIGHT := 1080
+TARGET_SCREEN_WIDTH := 1920
 
 $(call inherit-product, frameworks/native/build/tablet-10in-xhdpi-2048-dalvik-heap.mk)
 
@@ -84,11 +88,15 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_CHARACTERISTICS := tablet
 
+PRODUCT_TAGS += dalvik.gc.type-precise
+
+# HDMI
+PRODUCT_PROPERTY_OVERRIDES += ro.hdmi.device_type=4
+
 # Adb over TCP
 PRODUCT_PROPERTY_OVERRIDES += \
     service.adb.tcp.port=5555
 
-# USB
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
 
