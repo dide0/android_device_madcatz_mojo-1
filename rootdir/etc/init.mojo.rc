@@ -34,6 +34,14 @@ on post-fs-data
 
     mkdir /data/misc/wminput 0776 system system
 
+    mkdir /data/smc 0770 drmrpc drmrpc
+    mkdir /data/DxDrm 0770 media media
+    chown drmrpc drmrpc /data/smc/counter.bin
+    chown drmrpc drmrpc /data/smc/storage.bin
+    chown drmrpc drmrpc /data/smc/system.bin
+    copy /system/etc/DxDrmConfig.txt /data/DxDrm/DxDrmConfig.txt
+    chown media media /data/DxDrm/DxDrmConfig.txt
+
     # Set indication (checked by vold) that we have finished this action
     setprop vold.post_fs_data_done 1
     # Foxconn add start, Jesse Tsai, 10/07/2013

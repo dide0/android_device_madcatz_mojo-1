@@ -19,7 +19,6 @@ on property:sys.usb.config=none
 
 on property:sys.usb.config=mtp
     write /sys/class/android_usb/android0/enable 0
-    write /sys/devices/platform/tegra-otg/enable_host 0
     write /sys/class/android_usb/android0/idVendor 0955
     write /sys/class/android_usb/android0/idProduct 7102
     write /sys/class/android_usb/android0/functions ${sys.usb.config}
@@ -28,7 +27,6 @@ on property:sys.usb.config=mtp
 
 on property:sys.usb.config=mtp,adb
     write /sys/class/android_usb/android0/enable 0
-    write /sys/devices/platform/tegra-otg/enable_host 0
     write /sys/class/android_usb/android0/idVendor 0955
     write /sys/class/android_usb/android0/idProduct 7100
     write /sys/class/android_usb/android0/functions ${sys.usb.config}
@@ -38,7 +36,6 @@ on property:sys.usb.config=mtp,adb
 
 on property:sys.usb.config=rndis
     write /sys/class/android_usb/android0/enable 0
-    write /sys/devices/platform/tegra-otg/enable_host 0
     write /sys/class/android_usb/android0/idVendor 0955
     write /sys/class/android_usb/android0/idProduct 7103
     write /sys/class/android_usb/android0/functions ${sys.usb.config}
@@ -48,7 +45,6 @@ on property:sys.usb.config=rndis
 
 on property:sys.usb.config=rndis,adb
     write /sys/class/android_usb/android0/enable 0
-    write /sys/devices/platform/tegra-otg/enable_host 0
     write /sys/class/android_usb/android0/idVendor 0955
     write /sys/class/android_usb/android0/idProduct 7103
     write /sys/class/android_usb/android0/functions ${sys.usb.config}
@@ -59,7 +55,6 @@ on property:sys.usb.config=rndis,adb
 
 on property:sys.usb.config=ptp
     write /sys/class/android_usb/android0/enable 0
-    write /sys/devices/platform/tegra-otg/enable_host 0
     write /sys/class/android_usb/android0/idVendor 0955
 #TODO: should this be a new product #
     write /sys/class/android_usb/android0/idProduct 7102
@@ -69,7 +64,6 @@ on property:sys.usb.config=ptp
 
 on property:sys.usb.config=ptp,adb
     write /sys/class/android_usb/android0/enable 0
-    write /sys/devices/platform/tegra-otg/enable_host 0
     write /sys/class/android_usb/android0/idVendor 0955
 #TODO: should this be a new product #
     write /sys/class/android_usb/android0/idProduct 7100
