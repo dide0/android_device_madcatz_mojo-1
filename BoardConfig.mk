@@ -36,6 +36,8 @@ TARGET_TEGRA_VERSION := t114
 BOARD_KERNEL_CMDLINE := androidboot.hardware=mojo androidboot.selinux=permissive smsc95xx.boot_wol_config=0x07 smsc95xx.turbo_mode=N
 TARGET_KERNEL_SOURCE := kernel/madcatz/mojo
 TARGET_KERNEL_CONFIG := lineageos_mojo_defconfig
+TARGET_KERNEL_HAVE_EXFAT := true
+TARGET_KERNEL_HAVE_NTFS := true
 
 # Audio
 BOARD_USES_ALSA_AUDIO := true
@@ -75,16 +77,7 @@ TARGET_RELEASE_CPPFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS
 # Recovery
 COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
 TARGET_RECOVERY_FSTAB := device/madcatz/mojo/rootdir/etc/fstab.mojo
-TARGET_RECOVERY_DEVICE_DIRS += device/madcatz/mojo
-# TWRP (being included with the stuff in "Recovery")
-TW_THEME := landscape_hdpi
-RECOVERY_GRAPHICS_USE_LINELENGTH := true
-RECOVERY_SDCARD_ON_DATA := true
-TW_NO_SCREEN_TIMEOUT := true
-TW_NO_CPU_TEMP := true
-TW_BRIGHTNESS_PATH := "brightness"
-TW_NO_BATT_PERCENT := true
-TW_USE_TOOLBOX := true
+BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
 
 # SELinux
 BOARD_SEPOLICY_DIRS += \
