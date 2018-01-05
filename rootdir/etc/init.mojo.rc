@@ -13,7 +13,7 @@ import init.mojo.usb.rc
 
 on init
 
-    export LD_SHIM_LIBS "/system/lib/libnvcpud.so|libshim_vectorimpl.so:/system/lib/hw/audio_policy.tegra.so|libshim_vectorimpl.so"
+    export LD_SHIM_LIBS "/system/lib/hw/audio_policy.tegra.so|libshim_vectorimpl.so"
 
     # Support legacy paths
     symlink /sdcard /mnt/sdcard
@@ -263,17 +263,6 @@ service wbtmiscwriter /system/bin/wbtmiscwriter.sh
 on property:init.svc.hciattach=stopped
     write /sys/devices/platform/reg-userspace-consumer.1/state disabled
 
-# Enable NvCpuD, and set it to never poll config again
-on boot
-    setprop nvcpud.enabled true
-    setprop nvcpud.config_refresh_ms -1
-
-service nvcpud /system/bin/nvcpud
-    class main
-    user system
-    group system
-    oneshot
-
 # create filesystems if necessary
 service setup_fs /system/bin/setup_fs \
         /dev/block/platform/sdhci-tegra.3/by-name/UDA \
@@ -283,25 +272,6 @@ service setup_fs /system/bin/setup_fs \
     group root
     oneshot
 
-# # unified scaling setup doesn't work with current kernel
-# service ussr_setup /system/bin/ussr_setup.sh
-#     class main
-#     user root
-#     group root
-#     oneshot
-# 
-# # unified scaling process
-# service ussrd /system/bin/ussrd
-#     user system
-#     group system
-#     class main
-# 
-# # unified scaling watchdog process
-# service usdwatchdog /system/bin/usdwatchdog --wait 30
-#     user system
-#     group system
-#     class main
- 
 # start tf_daemon service
 service tf_daemon /system/bin/tf_daemon -storageDir /data/tf -d
     class main
