@@ -15,12 +15,20 @@
 #
 
 # Device uses high-density artwork where available
-PRODUCT_AAPT_CONFIG := normal
-PRODUCT_AAPT_PREF_CONFIG := tvdpi
+PRODUCT_AAPT_CONFIG := normal large xlarge hdpi xhdpi
+PRODUCT_AAPT_PREF_CONFIG := xhdpi
+
+PRODUCT_IS_ATV := true
+
+# Boot animation
+TARGET_SCREEN_HEIGHT := 1080
+TARGET_SCREEN_WIDTH := 1920
 
 $(call inherit-product, frameworks/native/build/tablet-10in-xhdpi-2048-dalvik-heap.mk)
 
 $(call inherit-product-if-exists, vendor/madcatz/mojo/mojo-vendor.mk)
+
+$(call inherit-product-if-exists, vendor/google/atv/atv-vendor.mk)
 
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += \
@@ -36,14 +44,19 @@ PRODUCT_PACKAGES += \
 # Permissions
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
+    frameworks/native/data/etc/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml \
     frameworks/native/data/etc/android.hardware.ethernet.xml:system/etc/permissions/android.hardware.ethernet.xml \
     frameworks/native/data/etc/android.hardware.location.xml:system/etc/permissions/android.hardware.location.xml \
-    frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
     frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
     frameworks/native/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
     frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
     frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
-    frameworks/native/data/etc/tablet_core_hardware.xml:system/etc/permissions/tablet_core_hardware.xml
+    $(LOCAL_PATH)/permissions/com.google.android.tv.installed.xml:system/etc/permissions/com.google.android.tv.installed.xml \
+    $(LOCAL_PATH)/permissions/com.nvidia.nvsi.xml:system/etc/permissions/com.nvidia.nvsi.xml \
+    $(LOCAL_PATH)/permissions/nrdp.xml:system/etc/permissions/nrdp.xml \
+    $(LOCAL_PATH)/permissions/mojo_hardware.xml:system/etc/permissions/mojo_hardware.xml \
+    $(LOCAL_PATH)/permissions/tv_core_hardware.xml:system/etc/permissions/tv_core_hardware.xml \
+    frameworks/native/data/etc/android.software.app_widgets.xml:system/etc/permissions/android.software.app_widgets.xml
 
 # Audio
 PRODUCT_COPY_FILES += \
@@ -82,13 +95,17 @@ PRODUCT_PACKAGES += \
     wpa_supplicant \
     wpa_supplicant.conf
 
-PRODUCT_CHARACTERISTICS := tablet
+PRODUCT_CHARACTERISTICS := tv
+
+PRODUCT_TAGS += dalvik.gc.type-precise
+
+# HDMI
+PRODUCT_PROPERTY_OVERRIDES += ro.hdmi.device_type=4
 
 # Adb over TCP
 PRODUCT_PROPERTY_OVERRIDES += \
     service.adb.tcp.port=5555
 
-# USB
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
 
@@ -112,5 +129,17 @@ PRODUCT_PACKAGES += \
 # Stlport
 PRODUCT_PACKAGES += \
     libstlport \
+
+# EGL
+PRODUCT_PACKAGES += \
+    libdgv1
+
+# TV-specific Apps/Packages
+PRODUCT_PACKAGES += \
+    AppDrawer \
+    CMLeanbackCustomizer \
+    TvProvider \
+    TvSettings \
+    tv_input.default
 
 $(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/config/config-bcm.mk)

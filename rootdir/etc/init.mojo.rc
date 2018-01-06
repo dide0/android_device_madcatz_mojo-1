@@ -1,4 +1,4 @@
-Copyright (c) 2011-2013 NVIDIA Corporation.  All Rights Reserved.
+#Copyright (c) 2011-2013 NVIDIA Corporation.  All Rights Reserved.
 #
 #NVIDIA Corporation and its licensors retain all intellectual property and
 #proprietary rights in and to this software and related documentation.  Any
@@ -8,10 +8,13 @@ Copyright (c) 2011-2013 NVIDIA Corporation.  All Rights Reserved.
 
 import init.mojo.usb.rc
 
-on early-init
-    mount debugfs debugfs /sys/kernel/debug
+#on early-init
+#    mount debugfs debugfs /sys/kernel/debug
 
 on init
+
+    export LD_SHIM_LIBS "/system/lib/libnvcpud.so|libshim_vectorimpl.so:/system/lib/hw/audio_policy.tegra.so|libshim_vectorimpl.so"
+
     # Support legacy paths
     symlink /sdcard /mnt/sdcard
     symlink /sdcard /storage/sdcard0
@@ -30,6 +33,14 @@ on post-fs-data
     chown 0777 /data/misc/bluedroid/conf
 
     mkdir /data/misc/wminput 0776 system system
+
+    mkdir /data/smc 0770 drmrpc drmrpc
+    mkdir /data/DxDrm 0770 media media
+    chown drmrpc drmrpc /data/smc/counter.bin
+    chown drmrpc drmrpc /data/smc/storage.bin
+    chown drmrpc drmrpc /data/smc/system.bin
+    copy /system/etc/DxDrmConfig.txt /data/DxDrm/DxDrmConfig.txt
+    chown media media /data/DxDrm/DxDrmConfig.txt
 
     # Set indication (checked by vold) that we have finished this action
     setprop vold.post_fs_data_done 1
@@ -86,9 +97,11 @@ on boot
     write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor interactive
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor interactive
     write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor interactive
-    write /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq 696000
-    write /sys/devices/system/cpu/cpufreq/interactive/target_loads "75 228000:85 696000:90 1530000:95"
-    write /sys/devices/system/cpu/cpufreq/interactive/above_hispeed_delay "20000 1530000:50000"
+    write /sys/devices/system/cpu/cpufreq/interactive/boost_factor 2
+    write /sys/devices/system/cpu/cpufreq/interactive/sustain_load 85
+    write /sys/devices/system/cpu/cpufreq/interactive/midrange_freq 1500000
+    write /sys/devices/system/cpu/cpufreq/interactive/midrange_max_boost 110000
+    write /sys/devices/system/cpu/cpufreq/interactive/go_maxspeed_load 90
 
     write /sys/devices/system/cpu/cpuquiet/tegra_cpuquiet/no_lp 0
     write /sys/devices/system/cpu/cpuquiet/tegra_cpuquiet/down_delay 500
@@ -130,9 +143,9 @@ on boot
     write /sys/power/edp/battery/speaker/notify 1
 
 # USB Host enable
-#on property:sys.boot_completed=1
-#    write /sys/devices/platform/tegra-otg/enable_host 1
-#    write /sys/bus/usb/devices/usb4/power/wakeup enabled
+on property:sys.boot_completed=1
+    write /sys/devices/platform/tegra-otg/enable_host 1
+    write /sys/bus/usb/devices/usb4/power/wakeup enabled
 
 # CPU Boost: boost CPU on input events
 service input-cfboost /system/bin/input_cfboost_init.sh
@@ -144,9 +157,6 @@ service input-cfboost /system/bin/input_cfboost_init.sh
 on property:ro.debuggable=1
     # EMC debug interface
     chmod 666 /sys/kernel/debug/tegra_emc/eack_state
-
-on property:testing.mediascanner.mft=1
-    mft
 
 service p2p_supplicant /system/bin/wpa_supplicant \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \

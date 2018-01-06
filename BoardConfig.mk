@@ -17,6 +17,8 @@
 # This variable is set first, so it can be overridden
 # by BoardConfigVendor.mk
 
+TARGET_SPECIFIC_HEADER_PATH := device/madcatz/mojo/include
+
 # Architecture
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
@@ -31,9 +33,9 @@ TARGET_NO_BOOTLOADER := true
 TARGET_TEGRA_VERSION := t114
 
 # Kernel
-BOARD_KERNEL_CMDLINE := androidboot.hardware=mojo androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE := androidboot.hardware=mojo androidboot.selinux=permissive smsc95xx.boot_wol_config=0x07 smsc95xx.turbo_mode=N
 TARGET_KERNEL_SOURCE := kernel/madcatz/mojo
-TARGET_KERNEL_CONFIG := cyanogenmod_mojo_defconfig
+TARGET_KERNEL_CONFIG := lineageos_mojo_defconfig
 
 # Audio
 BOARD_USES_ALSA_AUDIO := true
@@ -73,6 +75,20 @@ TARGET_RELEASE_CPPFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS
 # Recovery
 COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
 TARGET_RECOVERY_FSTAB := device/madcatz/mojo/rootdir/etc/fstab.mojo
+TARGET_RECOVERY_DEVICE_DIRS += device/madcatz/mojo
+# TWRP (being included with the stuff in "Recovery")
+TW_THEME := landscape_hdpi
+RECOVERY_GRAPHICS_USE_LINELENGTH := true
+RECOVERY_SDCARD_ON_DATA := true
+TW_NO_SCREEN_TIMEOUT := true
+TW_NO_CPU_TEMP := true
+TW_BRIGHTNESS_PATH := "brightness"
+TW_NO_BATT_PERCENT := true
+TW_USE_TOOLBOX := true
+
+# SELinux
+BOARD_SEPOLICY_DIRS += \
+    device/madcatz/mojo/sepolicy
 
 # Wifi related defines
 BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
