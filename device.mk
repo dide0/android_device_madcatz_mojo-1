@@ -52,9 +52,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
     frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
     $(LOCAL_PATH)/permissions/com.google.android.tv.installed.xml:system/etc/permissions/com.google.android.tv.installed.xml \
-    $(LOCAL_PATH)/permissions/com.nvidia.nvsi.xml:system/etc/permissions/com.nvidia.nvsi.xml \
     $(LOCAL_PATH)/permissions/nrdp.xml:system/etc/permissions/nrdp.xml \
-    $(LOCAL_PATH)/permissions/mojo_hardware.xml:system/etc/permissions/mojo_hardware.xml \
     $(LOCAL_PATH)/permissions/tv_core_hardware.xml:system/etc/permissions/tv_core_hardware.xml \
     frameworks/native/data/etc/android.software.app_widgets.xml:system/etc/permissions/android.software.app_widgets.xml
 
@@ -88,6 +86,10 @@ PRODUCT_COPY_FILES += \
 # NVIDIA
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/permissions/com.nvidia.nvsi.xml:system/etc/permissions/com.nvidia.nvsi.xml
+
+# Pad
+#PRODUCT_COPY_FILES += \
+#    $(LOCAL_PATH)/keychars/Generic.kcm:system/usr/keychars/Generic.kcm
 
 PRODUCT_PACKAGES += \
     dhcpcd.conf \
