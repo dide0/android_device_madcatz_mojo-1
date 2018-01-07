@@ -89,7 +89,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/permissions/com.nvidia.nvsi.xml:system/etc/permissions/com.nvidia.nvsi.xml
 
 PRODUCT_PACKAGES += \
-    libwpa_client \
     hostapd \
     wpa_supplicant \
     wpa_supplicant.conf
