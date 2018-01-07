@@ -27,8 +27,10 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
 $(call inherit-product, device/madcatz/mojo/device.mk)
 
 PRODUCT_NAME := full_mojo
-PRODUCT_DEVICE := molly
-PRODUCT_BRAND := google
-PRODUCT_MODEL := ADT-1
-PRODUCT_MANUFACTURER := Google
-PRODUCT_RELEASE_NAME := molly
+PRODUCT_DEVICE := mojo
+PRODUCT_BRAND := MadCatz
+PRODUCT_MODEL := Mad Catz M.O.J.O.
+PRODUCT_MANUFACTURER := Foxconn International Holdings Limited
+PRODUCT_RELEASE_NAME := foster
+
+

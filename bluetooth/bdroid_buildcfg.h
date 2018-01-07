@@ -17,7 +17,7 @@
 #ifndef _BDROID_BUILDCFG_H
 #define _BDROID_BUILDCFG_H
 
-#define BTM_DEF_LOCAL_NAME "Google ADT-1"
+#define BTM_DEF_LOCAL_NAME "Mad Catz M.O.J.O."
 
 // SERVICE_CLASS:(Bit17 -Networking,Bit19 - Capturing,Bit20 -Object Transfer)
 // MAJOR CLASS: COMPUTER

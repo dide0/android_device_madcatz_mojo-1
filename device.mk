@@ -54,6 +54,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/permissions/com.google.android.tv.installed.xml:system/etc/permissions/com.google.android.tv.installed.xml \
     $(LOCAL_PATH)/permissions/nrdp.xml:system/etc/permissions/nrdp.xml \
     $(LOCAL_PATH)/permissions/tv_core_hardware.xml:system/etc/permissions/tv_core_hardware.xml \
+    frameworks/native/data/etc/android.hardware.hdmi.cec.xml:system/etc/permissions/android.hardware.hdmi.cec.xml \
     frameworks/native/data/etc/android.software.app_widgets.xml:system/etc/permissions/android.software.app_widgets.xml
 
 # Audio
@@ -87,12 +88,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/permissions/com.nvidia.nvsi.xml:system/etc/permissions/com.nvidia.nvsi.xml
 
-# Pad
-#PRODUCT_COPY_FILES += \
-#    $(LOCAL_PATH)/keychars/Generic.kcm:system/usr/keychars/Generic.kcm
-
 PRODUCT_PACKAGES += \
-    dhcpcd.conf \
+    libwpa_client \
     hostapd \
     wpa_supplicant \
     wpa_supplicant.conf
@@ -103,6 +100,12 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 
 # HDMI
 PRODUCT_PROPERTY_OVERRIDES += ro.hdmi.device_type=4
+
+# Debugging
+ADDITIONAL_DEFAULT_PROPERTIES += \
+    ro.adb.secure=0 \
+    ro.secure=0 \
+    ro.debuggable=1
 
 # Adb over TCP
 PRODUCT_PROPERTY_OVERRIDES += \
