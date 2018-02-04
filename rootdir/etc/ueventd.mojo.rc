@@ -40,3 +40,16 @@
 /dev/min_online_cpus	0660	system	system
 /dev/max_online_cpus	0660	system	system
 /dev/hci_tty	0666	root	root
+/dev/emc_freq_min	0660	system	system
+/dev/emc_freq_max	0660	system	system
+/dev/gpu_freq_min	0660	system	system
+/dev/gpu_freq_max	0660	system	system
+/dev/quadd	0660	shell	shell
+/dev/quadd_auth	0660	system	system
+
+# cpu cores
+/sys/devices/system/cpu/cpu*/cpuquiet/active 0664 system system
+/sys/devices/system/cpu/cpu*/cpufreq/scaling_governor 0664 system system
+/sys/devices/system/cpu/cpu*/cpufreq/scaling_setspeed 0664 system system
+/sys/devices/system/cpu/cpu*/cpufreq/scaling_available_frequencies 0444 system system
+/sys/devices/system/cpu/cpu*/cpufreq/cpuinfo_cur_freq 0444 system system

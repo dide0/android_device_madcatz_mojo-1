@@ -2,7 +2,8 @@
 # system.prop for mojo
 #
 
-ro.opengles.version = 131072
+#persist.sys.usb.config=adb
+
 wifi.interface=wlan0
 ap.interface=wlan0
 ro.sf.lcd_density=213
@@ -17,7 +18,7 @@ persist.tegra.nvmmlite = 1
 persist.tegra.hdmi.primary = 1
 
 # hwcomposer selects max HDMI resolution
-persist.sys.hdmi.resolution = Max
+#persist.sys.hdmi.resolution = Max
 
 # hwcomposer tells surface flinger to always use 1920x1080 resolution
 # regardless of HDMI mode
@@ -47,3 +48,8 @@ ro.zygote.disable_gl_preload=true
 
 # Set carrier
 ro.carrier=wifi-only
+
+
+# Stagefright additions
+media.stagefright.legacyencoder=true
+media.stagefright.less-secure=true

@@ -43,9 +43,6 @@
         <item>9,1</item>
     </string-array>
 
-    <!-- Enable electronBeam animation instead of fading off. -->
-    <bool name="config_animateScreenLights">true</bool>
-
     <!-- Boolean indicating whether the wifi chipset supports background scanning mechanism.
          This mechanism allows the host to remain in suspend state and the dongle to actively
          scan and wake the host when a configured SSID is detected by the dongle. This chipset
@@ -53,30 +50,14 @@
          The driver commands needed to support the feature are BGSCAN-START and BGSCAN-STOP -->
     <bool name="config_wifi_background_scan_support">true</bool>
 
-    <!-- Flag indicating whether the current device is "voice capable".
-         If true, this means that the device supports circuit-switched
-         (i.e. voice) phone calls over the telephony network, and is
-         allowed to display the in-call UI while a cellular voice call is
-         active.  This can be overridden to false for "data only" devices
-         which can't make voice calls and don't support any in-call UI.
-         Note: this flag is subtly different from the
-         PackageManager.FEATURE_TELEPHONY system feature, which is
-         available on *any* device with a telephony radio, even if the
-         device is data-only. -->
+   <!-- Flag indicating if device supports EAP SIM, AKA, AKA' -->
+    <bool name="config_eap_sim_based_auth_supported">false</bool>
+
+    <!-- This device is data-only. -->
     <bool name="config_voice_capable">false</bool>
 
-    <!-- Flag indicating whether the current device allows sms service.
-         If true, this means that the device supports both sending and
-         receiving sms via the telephony network.
-         This can be overridden to false for "data only" devices
-         which can't send and receive sms message.
-         Note: Disable SMS also disable voicemail waiting sms,
-               cell broadcasting sms, and MMS. -->
+    <!-- This device does not allow sms service. -->
     <bool name="config_sms_capable">false</bool>
-
-    <!-- Set to true to add links to Cell Broadcast app from Settings and MMS app. -->
-    <bool name="config_cellBroadcastAppLinks">false</bool>
-
 
     <bool name="config_ui_enableFadingMarquee">true</bool>
 
@@ -93,9 +74,11 @@
     <integer name="config_ntpRetry">-1</integer>
 
     <integer name="config_defaultUiModeType">4</integer>
+
+    <!-- Disable 'Touch Mode' on TV builds -->
     <bool name="config_defaultInTouchMode">false</bool>
 
     <!-- Disable default bluetooth profiles -->
-    <!--<bool name="config_bluetooth_default_profiles">false</bool>-->
+    <bool name="config_bluetooth_default_profiles">false</bool>
 
 </resources>

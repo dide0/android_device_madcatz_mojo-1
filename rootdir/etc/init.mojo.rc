@@ -32,7 +32,7 @@ on post-fs-data
     chown 0777 /data/misc/wifi/conf
     chown 0777 /data/misc/bluedroid/conf
 
-    mkdir /data/misc/wminput 0776 system system
+    #mkdir /data/misc/wminput 0776 system system
 
     mkdir /data/smc 0770 drmrpc drmrpc
     mkdir /data/DxDrm 0770 media media
@@ -121,7 +121,6 @@ on boot
     write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor interactive
     write /sys/devices/system/cpu/cpufreq/interactive/boost_factor 2
     write /sys/devices/system/cpu/cpufreq/interactive/sustain_load 85
-
     write /sys/devices/system/cpu/cpuquiet/tegra_cpuquiet/enable 1
     write /sys/devices/system/cpu/cpuquiet/current_governor runnable
     write /sys/module/cpuidle_t11x/parameters/cpu_power_gating_in_idle 31
@@ -153,8 +152,8 @@ on boot
     write /sys/block/mmcblk1/queue/read_ahead_kb 2048
 
     # Wiimote connect status
-    write /data/misc/wminput/connected 0
-    chmod 0666 /data/misc/wminput/connected
+    #write /data/misc/wminput/connected 0
+    #chmod 0666 /data/misc/wminput/connected
 
     # EDP attributes
     write /sys/power/edp/battery/speaker/notify 1

@@ -55,26 +55,7 @@
 #define PAN_INCLUDED FALSE
 #define AVCT_INCLUDED FALSE
 
-/* We will support a remote +  4 game controllers.  To be able to
- * allocate sufficient bandwidth for all devices we will restrict the
- * Game Controllers to a sniff interval of 13.75ms.
- */
-#define BTA_DM_PM_SNIFF4_MAX     22
-#define BTA_DM_PM_SNIFF4_MIN     22
-#define BTA_DM_PM_SNIFF4_ATTEMPT 1
-#define BTA_DM_PM_SNIFF4_TIMEOUT 0
-
-#define BTA_DM_PM_SNIFF_HH_OPEN_IDX BTA_DM_PM_SNIFF4
-#define BTA_DM_PM_HH_OPEN_DELAY 0
-
-#define BTA_DM_PM_SNIFF_HH_ACTIVE_IDX BTA_DM_PM_SNIFF4
-#define BTA_DM_PM_HH_ACTIVE_DELAY 0
-
-#define BTA_DM_PM_SNIFF_HH_IDLE_IDX BTA_DM_PM_SNIFF4
-#define BTA_DM_PM_HH_IDLE_DELAY 0
-
 // Change I/O capabilities to output only so pairing uses passkey instead of pin
 #define BTM_LOCAL_IO_CAPS BTM_IO_CAP_OUT
-
 
 #endif

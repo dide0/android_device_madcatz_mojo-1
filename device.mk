@@ -52,9 +52,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
     frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
     $(LOCAL_PATH)/permissions/com.google.android.tv.installed.xml:system/etc/permissions/com.google.android.tv.installed.xml \
-    $(LOCAL_PATH)/permissions/nrdp.xml:system/etc/permissions/nrdp.xml \
     $(LOCAL_PATH)/permissions/tv_core_hardware.xml:system/etc/permissions/tv_core_hardware.xml \
-    frameworks/native/data/etc/android.hardware.hdmi.cec.xml:system/etc/permissions/android.hardware.hdmi.cec.xml \
     frameworks/native/data/etc/android.software.app_widgets.xml:system/etc/permissions/android.software.app_widgets.xml
 
 # Audio
@@ -65,8 +63,28 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_PACKAGES += \
     audio.a2dp.default \
+    audio_policy.default \
+    audio.primary.default \
+    audio.primary.mojo \
     audio.r_submix.default \
-    audio.usb.default
+    audio.usb.default \
+    libaudiopolicyservice \
+    libaudiopolicymanager \
+    libaudiopolicymanagerdefault \
+    libtinyalsa \
+    libaudiospdif \
+    libaudioutils \
+    libaudioresampler \
+    tinymix \
+    tinycap
+
+USE_CUSTOM_AUDIO_POLICY := 1
+
+# Stagefright
+PRODUCT_PROPERTY_OVERRIDES += \
+    media.stagefright.cache-params=10240/20480/15 \
+    persist.sys.media.avsync=true \
+    media.aac_51_output_enabled=true
 
 # Bluetooth
 PRODUCT_COPY_FILES += \
@@ -89,6 +107,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/permissions/com.nvidia.nvsi.xml:system/etc/permissions/com.nvidia.nvsi.xml
 
 PRODUCT_PACKAGES += \
+    dhcpcd.conf \
     hostapd \
     wpa_supplicant \
     wpa_supplicant.conf
@@ -124,26 +143,30 @@ PRODUCT_PACKAGES += \
 
 # Power
 PRODUCT_PACKAGES += \
-    power.tegra
+    power.mojo
 
-# Shim
-PRODUCT_PACKAGES += \
-    libshim_vectorimpl
+# EGL
+#PRODUCT_PACKAGES += \
+#    libdgv1
 
 # Stlport
 PRODUCT_PACKAGES += \
-    libstlport \
+    libstlport
 
-# EGL
-PRODUCT_PACKAGES += \
-    libdgv1
+#  OpenGL ES 2.0
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.opengles.version=131072
 
 # TV-specific Apps/Packages
 PRODUCT_PACKAGES += \
     AppDrawer \
     CMLeanbackCustomizer \
+    LeanbackLauncher \
+    LeanbackIme \
+    Provision \
     TvProvider \
     TvSettings \
-    tv_input.default
+    tv_input.default \
+    TV
 
 $(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/config/config-bcm.mk)
