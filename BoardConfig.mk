@@ -36,7 +36,7 @@ TARGET_TEGRA_VERSION := t114
 # Kernel
 BOARD_KERNEL_CMDLINE := androidboot.hardware=mojo androidboot.selinux=permissive smsc95xx.boot_wol_config=0x07 smsc95xx.turbo_mode=N
 TARGET_KERNEL_SOURCE := kernel/madcatz/mojo
-TARGET_KERNEL_CONFIG := tegra11_mojo_android_defconfig
+TARGET_KERNEL_CONFIG := lineageos_mojo_defconfig
 TARGET_KERNEL_HAVE_EXFAT := true
 TARGET_KERNEL_HAVE_NTFS := true
 
