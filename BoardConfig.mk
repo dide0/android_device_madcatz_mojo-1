@@ -17,6 +17,8 @@
 # This variable is set first, so it can be overridden
 # by BoardConfigVendor.mk
 
+TARGET_SPECIFIC_HEADER_PATH := device/madcatz/mojo/include
+
 # Architecture
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
@@ -25,27 +27,30 @@ TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_CPU_VARIANT := cortex-a15
 
 # Board
-TARGET_BOARD_PLATFORM := tegra
+TARGET_BOARD_PLATFORM := tegra4
 TARGET_BOOTLOADER_BOARD_NAME := mojo
 TARGET_NO_BOOTLOADER := true
+TARGET_NO_RADIOIMAGE := true
+#TARGET_NO_RECOVERY := true
+#TARGET_TEGRA_VERSION := t114
 
 # Kernel
-BOARD_KERNEL_CMDLINE := androidboot.hardware=mojo androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE := androidboot.hardware=mojo androidboot.selinux=permissive smsc95xx.boot_wol_config=0x07 smsc95xx.turbo_mode=N
 TARGET_KERNEL_SOURCE := kernel/madcatz/mojo
-TARGET_KERNEL_CONFIG := tegra11_mojo_android_defconfig
+TARGET_KERNEL_CONFIG := lineageos_mojo_defconfig
+TARGET_KERNEL_HAVE_EXFAT := true
+TARGET_KERNEL_HAVE_NTFS := true
+
 
 # Audio
 BOARD_USES_ALSA_AUDIO := true
-BOARD_HAVE_PRE_KITKAT_AUDIO_BLOB := true
-BOARD_HAVE_PRE_KITKAT_AUDIO_POLICY_BLOB := true
-TARGET_TINY_ALSA_IGNORE_SILENCE_SIZE := true
-USE_LEGACY_AUDIO_POLICY := 1
-
+BOARD_USES_TINY_ALSA_AUDIO := true
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR ?= device/madcatz/mojo/bluetooth
+BCM_BLUETOOTH_MANTA_BUG := True
 
 # Graphics
 USE_OPENGL_RENDERER := true
@@ -64,10 +69,24 @@ BOARD_SYSTEMIMAGE_PARTITION_SIZE := 805306368
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 14042529792
 BOARD_FLASH_BLOCK_SIZE := 4096
 
+# Pre-kitkat blob support
+#TARGET_RELEASE_CPPFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS
+
 # Recovery
-BOARD_CUSTOM_BOOTIMG_MK := device/madcatz/mojo/shbootimg.mk
 BOARD_NO_SECURE_DISCARD := true
 TARGET_RECOVERY_FSTAB := device/madcatz/mojo/rootdir/etc/fstab.mojo
+TARGET_RECOVERY_DEVICE_DIRS += device/madcatz/mojo
+BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
+
+# Compress recovery ramdisk
+BOARD_CUSTOM_BOOTIMG_MK := device/madcatz/mojo/custombootimg.mk
+BOARD_CANT_BUILD_RECOVERY_FROM_BOOT_PATCH := true
+
+
+
+# SELinux
+#BOARD_SEPOLICY_DIRS += \
+#    device/madcatz/mojo/sepolicy
 
 # Wifi related defines
 BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
@@ -80,4 +99,5 @@ WIFI_DRIVER_FW_PATH_PARAM        := "/sys/module/bcm43241/parameters/firmware_pa
 WIFI_DRIVER_FW_PATH_AP           := "/system/vendor/firmware/bcm43241/fw_bcmdhd_apsta.bin"
 WIFI_DRIVER_FW_PATH_STA          := "/system/vendor/firmware/bcm43241/fw_bcmdhd.bin"
 
+# Malloc
 MALLOC_SVELTE := true

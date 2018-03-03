@@ -18,14 +18,14 @@
 | Release Date            | December 2013                     |
 
 ## Device Picture
-![Mad Catz M.O.J.O](http://gamingindustryiq.com/wp-content/uploads/2013/10/mojo3.jpg "Mad Catz M.O.J.O")
+![Mad Catz M.O.J.O](http://store.madcatz.com/MCB60211_mojo_console_00_lg.jpg "Mad Catz M.O.J.O")
 
 ## Copyright
 
 ```
 #
-# Copyright (C) 2014-2016, The CyanogenMod Project
-#           (C) 2017, The LineageOS Project
+# Copyright (C) 2014 The CyanogenMod Project
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
