@@ -169,4 +169,8 @@ PRODUCT_PACKAGES += \
     tv_input.default \
     TV
 
+# EGL
+PRODUCT_PACKAGES += \
+    libdgv1
+
 $(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/config/config-bcm.mk)
