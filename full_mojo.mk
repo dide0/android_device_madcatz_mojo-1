@@ -31,3 +31,6 @@ PRODUCT_DEVICE := mojo
 PRODUCT_BRAND := MadCatz
 PRODUCT_MODEL := Mad Catz M.O.J.O.
 PRODUCT_MANUFACTURER := Foxconn International Holdings Limited
+PRODUCT_RELEASE_NAME := mojo
+
+

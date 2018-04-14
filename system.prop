@@ -2,7 +2,8 @@
 # system.prop for mojo
 #
 
-ro.opengles.version = 131072
+#persist.sys.usb.config=adb
+
 wifi.interface=wlan0
 ap.interface=wlan0
 ro.sf.lcd_density=213
@@ -47,3 +48,8 @@ ro.zygote.disable_gl_preload=true
 
 # Set carrier
 ro.carrier=wifi-only
+
+
+# Stagefright additions
+media.stagefright.legacyencoder=true
+media.stagefright.less-secure=true
