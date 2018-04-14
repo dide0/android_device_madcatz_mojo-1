@@ -18,8 +18,6 @@
 PRODUCT_AAPT_CONFIG := normal large xlarge hdpi xhdpi
 PRODUCT_AAPT_PREF_CONFIG := xhdpi
 
-PRODUCT_IS_ATV := true
-
 # Boot animation
 TARGET_SCREEN_HEIGHT := 1080
 TARGET_SCREEN_WIDTH := 1920
@@ -27,8 +25,6 @@ TARGET_SCREEN_WIDTH := 1920
 $(call inherit-product, frameworks/native/build/tablet-10in-xhdpi-2048-dalvik-heap.mk)
 
 $(call inherit-product-if-exists, vendor/madcatz/mojo/mojo-vendor.mk)
-
-$(call inherit-product-if-exists, vendor/google/atv/atv-vendor.mk)
 
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += \
@@ -47,12 +43,12 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml \
     frameworks/native/data/etc/android.hardware.ethernet.xml:system/etc/permissions/android.hardware.ethernet.xml \
     frameworks/native/data/etc/android.hardware.location.xml:system/etc/permissions/android.hardware.location.xml \
+    frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
     frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
     frameworks/native/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
     frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
     frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
-    $(LOCAL_PATH)/permissions/com.google.android.tv.installed.xml:system/etc/permissions/com.google.android.tv.installed.xml \
-    $(LOCAL_PATH)/permissions/tv_core_hardware.xml:system/etc/permissions/tv_core_hardware.xml \
+    frameworks/native/data/etc/tablet_core_hardware.xml:system/etc/permissions/tablet_core_hardware.xml \
     frameworks/native/data/etc/android.software.app_widgets.xml:system/etc/permissions/android.software.app_widgets.xml
 
 # Audio
@@ -102,7 +98,8 @@ PRODUCT_COPY_FILES += \
 
 # NVIDIA
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/permissions/com.nvidia.nvsi.xml:system/etc/permissions/com.nvidia.nvsi.xml
+    $(LOCAL_PATH)/permissions/com.nvidia.nvsi.xml:system/etc/permissions/com.nvidia.nvsi.xml \
+    $(LOCAL_PATH)/permissions/com.nvidia.feature.xml:system/etc/permissions/com.nvidia.feature.xml
 
 PRODUCT_PACKAGES += \
     dhcpcd.conf \
@@ -110,7 +107,7 @@ PRODUCT_PACKAGES += \
     wpa_supplicant \
     wpa_supplicant.conf
 
-PRODUCT_CHARACTERISTICS := tv
+PRODUCT_CHARACTERISTICS := tablet shield
 
 PRODUCT_TAGS += dalvik.gc.type-precise
 
@@ -146,18 +143,6 @@ PRODUCT_PACKAGES += \
 #  OpenGL ES 2.0
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.opengles.version=131072
-
-# TV-specific Apps/Packages
-PRODUCT_PACKAGES += \
-    AppDrawer \
-    CMLeanbackCustomizer \
-    LeanbackLauncher \
-    LeanbackIme \
-    Provision \
-    TvProvider \
-    TvSettings \
-    tv_input.default \
-    TV
 
 # EGL
 PRODUCT_PACKAGES += \
