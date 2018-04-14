@@ -18,7 +18,7 @@ persist.tegra.nvmmlite = 1
 persist.tegra.hdmi.primary = 1
 
 # hwcomposer selects max HDMI resolution
-#persist.sys.hdmi.resolution = Max
+persist.sys.hdmi.resolution = Max
 
 # hwcomposer tells surface flinger to always use 1920x1080 resolution
 # regardless of HDMI mode

@@ -56,22 +56,17 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.app_widgets.xml:system/etc/permissions/android.software.app_widgets.xml
 
 # Audio
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/audio/audioConfig_qvoice_icera_pc400.xml:system/etc/audioConfig_qvoice_icera_pc400.xml \
-    $(LOCAL_PATH)/audio/audio_policy.conf:system/etc/audio_policy.conf \
-    $(LOCAL_PATH)/audio/nvaudio_conf.xml:system/etc/nvaudio_conf.xml
-
 PRODUCT_PACKAGES += \
-    audio.a2dp.default \
-    audio_policy.default \
-    audio.primary.default \
+    libtinyalsa \
     audio.primary.mojo \
     audio.r_submix.default \
     audio.usb.default \
-    libaudiopolicyservice \
+    audio.a2dp.default \
     libaudiopolicymanager \
+    audio_policy.default \
+    audio.primary.default \
+    libaudiopolicyservice \
     libaudiopolicymanagerdefault \
-    libtinyalsa \
     libaudiospdif \
     libaudioutils \
     libaudioresampler \
@@ -79,6 +74,9 @@ PRODUCT_PACKAGES += \
     tinycap
 
 USE_CUSTOM_AUDIO_POLICY := 1
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/audio/audio_policy.conf:system/etc/audio_policy.conf \
 
 # Stagefright
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -144,14 +142,6 @@ PRODUCT_PACKAGES += \
 # Power
 PRODUCT_PACKAGES += \
     power.mojo
-
-# EGL
-#PRODUCT_PACKAGES += \
-#    libdgv1
-
-# Stlport
-PRODUCT_PACKAGES += \
-    libstlport
 
 #  OpenGL ES 2.0
 PRODUCT_PROPERTY_OVERRIDES += \
